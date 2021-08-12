@@ -15,8 +15,18 @@ const Document = require('./routes/document');
 
 //Connect to db
 mongoose.connect(`${process.env.MONGODB_URI}`,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    () => console.log('Connected to db'))
+    { useNewUrlParser: true, useUnifiedTopology: true })
+
+
+    mongoose.connection.on('connected', function () {
+        console.log(`connected to DB`);
+      });
+      
+      // works fine, but not fired when I kill **mongod** process
+      mongoose.connection.on('error', function (error) {
+        // error log to a file
+        console.log(`error in connection to DB`);
+      });
 
 //Route Middlewares
 app.use('/', (req,res) => {
