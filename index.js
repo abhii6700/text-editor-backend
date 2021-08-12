@@ -20,9 +20,11 @@ mongoose.connect(`${process.env.DB_CONNECT}`,
 
 //Route Middlewares
 app.use('/', (req,res) => {
-    res.send({
+    console.log('server is up')
+    return res.send({
         message: 'Server is up and running'
     })
+
 })
 app.use('/api/user', authRoute)
 app.use('/api/document', Document )
