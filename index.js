@@ -39,4 +39,4 @@ app.use('/', (req,res) => {
 app.use('/api/user', authRoute)
 app.use('/api/document', Document )
 
-app.listen(3001, () => console.log('Server is up and running'))
+app.listen(preocess.env.PORT || 3001, () => console.log('Server is up and running'))
