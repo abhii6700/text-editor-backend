@@ -29,6 +29,10 @@ mongoose.connect(`${process.env.MONGODB_URI}`,
       });
 
 //Route Middlewares
+
+app.use('/api/user', authRoute)
+app.use('/api/document', Document )
+
 app.use('/', (req,res) => {
     console.log('server is up')
     return res.send({
@@ -36,7 +40,5 @@ app.use('/', (req,res) => {
     })
 
 })
-app.use('/api/user', authRoute)
-app.use('/api/document', Document )
 
 app.listen(process.env.PORT || 3001, () => console.log('Server is up and running'))
